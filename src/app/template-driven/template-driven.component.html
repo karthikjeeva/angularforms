@@ -1,0 +1,53 @@
+<h1>{{title}}</h1>
+<form (ngSubmit)="onSubmit()" #personForm="ngForm">
+    <div class="form-group">
+        <label for="id">Id</label>
+        <input type="text" class="form-control" id="id" required [(ngModel)]="person.id" name="id">
+    </div>
+
+    <div class="form-group">
+        <label for="id">Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="person.name" name="name"  #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="power">City</label>
+        <select class="form-control"  id="city" required [(ngModel)]="person.city" name="city">
+        <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="power">Country</label>
+        <select class="form-control"  id="country" required [(ngModel)]="person.country" name="country">
+        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+    </div>
+    
+    <button type="submit" class="btn btn-success" [disabled]="!personForm.form.valid">Submit</button>
+    <button type="button" class="btn btn-default" (click)="newPerson(); personForm.reset()">New Person</button>
+
+    <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+          <div class="col-xs-3">Id</div>
+          <div class="col-xs-9">{{ person.id }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Name</div>
+          <div class="col-xs-9">{{ person.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">City</div>
+          <div class="col-xs-9">{{ person.city }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Country</div>
+            <div class="col-xs-9">{{ person.country }}</div>
+          </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+</form>
+

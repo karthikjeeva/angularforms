@@ -1,0 +1,13 @@
+.header {
+    background-color: black;
+    color:white;
+    font-size: 16px;
+    width: 200px;
+    height: 200px;
+}
+
+.headerTitle {
+    position: absolute;
+    left: 20%;
+    top:40%;
+}
